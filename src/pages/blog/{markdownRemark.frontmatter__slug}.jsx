@@ -7,6 +7,11 @@ const pageStyles = {
   fontFamily: "-apple-system, Roboto, sans-serif, serif",
 }
 
+const bodyStyles = {
+  marginBottom: 48,
+  maxWidth: 1200
+}
+
 export default function BlogPostTemplate({
   data, // this prop will be injected by the GraphQL query below.
 }) {
@@ -17,7 +22,7 @@ export default function BlogPostTemplate({
       <div>
         <h1>{frontmatter.title}</h1>
         <h2>{frontmatter.date}</h2>
-        <div
+        <div style={bodyStyles}
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>
