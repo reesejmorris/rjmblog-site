@@ -28,8 +28,19 @@ const config: GatsbyConfig = {
       "path": "./src/content/"
     },
     __key: "pages"
-  },  
-  `gatsby-transformer-remark`]
+  }, {
+    resolve: `gatsby-transformer-remark`,
+    options: {
+      plugins: [
+        {
+          resolve: `gatsby-remark-images`,
+          options: {
+            maxWidth: 800,
+          },
+        },
+      ],
+    },
+  }]
 };
 
 export default config;
