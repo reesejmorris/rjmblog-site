@@ -89,7 +89,7 @@ const IndexPage: React.FC<PageProps> = () => {
       <p style={paragraphStyles}>
         Welcome to my blog! 
       </p>
-      <Link to="/blog//tiny-apis">Check out my first blog post on minimal APIs and Mediatr</Link>
+      <Link to="/tiny-apis">Check out my first blog post on minimal APIs and Mediatr</Link>
     </main>
   )
 }
