@@ -13,7 +13,7 @@ const headingStyles = {
   maxWidth: 320,
 }
 const headingAccentStyles = {
-  color: "#663399",
+  color: "#0059b3",
 }
 const paragraphStyles = {
   marginBottom: 48,
@@ -84,7 +84,7 @@ const IndexPage: React.FC<PageProps> = () => {
       <h1 style={headingStyles}>
         RJM 
         <br />
-        <span style={headingAccentStyles}>.NET</span>
+        <span style={headingAccentStyles}>.NET BLOG</span>
       </h1>
       <p style={paragraphStyles}>
         Welcome to my blog, check out the posts below. 

@@ -1,12 +1,14 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
 const pageStyles = {
   color: "#232129",
   padding: 96,
   fontFamily: "-apple-system, Roboto, sans-serif, serif",
 }
-
+const headingAccentStyles = {
+  color: "#0059b3",
+}
 const bodyStyles = {
   marginBottom: 48,
   maxWidth: 1200
@@ -21,7 +23,8 @@ export default function BlogPostTemplate({
     <div style={pageStyles}>
       <div>
         <h1>{frontmatter.title}</h1>
-        <h2>{frontmatter.date}</h2>
+        <h2 style={headingAccentStyles}>{frontmatter.date}</h2>
+        <Link to="/">HOME</Link>
         <div style={bodyStyles}
           dangerouslySetInnerHTML={{ __html: html }}
         />
