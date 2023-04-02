@@ -40,7 +40,7 @@ Simply put, the mediator pattern has a mediator class. There will also be a numb
 
 After installing the latest version of the MediatR package we will first need to define our MediatR request. Here we have the `GetWorkoutsRequest`:
 
-![Screenshot 5](../images/tinyapi_05.png)
+![Screenshot 3](../images/tinyapi_03.png)
 
 It's very simple defining a request in MediatR, we create the class and then inherit from the IRequest class. The generic type argument we pass through is the response type.
 
@@ -50,7 +50,7 @@ Next, we will define a handler for this request type. The logic within the handl
 
 Here is a simple implementation of Mediatr in our minimal API: 
 
-![Screenshot 3](../images/tinyapi_03.png)
+![Screenshot 5](../images/tinyapi_05.png)
 
 The only thing we must do to use Mediatr is inject the IMediatr dependency into our delegate. We then pass the `GetWorkoutsRequest` request class to the Mediatr object. Mediatr then works out what handler to use based on the `IRequestHandler` with the `GetWorkoutsRequest` as the generic argument. 
 

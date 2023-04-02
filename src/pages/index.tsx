@@ -87,9 +87,9 @@ const IndexPage: React.FC<PageProps> = () => {
         <span style={headingAccentStyles}>.NET</span>
       </h1>
       <p style={paragraphStyles}>
-        Welcome to my blog! 
+        Welcome to my blog, check out the posts below. 
       </p>
-      <Link to="/tiny-apis">Check out my first blog post on minimal APIs and Mediatr</Link>
+      <Link to="/tiny-apis">Tiny APIs with Mediatr and minimal APIs in .NET 7</Link>
     </main>
   )
 }
