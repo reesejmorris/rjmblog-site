@@ -12,9 +12,9 @@ Let’s have a look at a very simple minimal API.
 
 ![Screenshot 1](../images/tinyapi_01.png)
 
-The code we want to focus on is the `app.MapGet()` method. The method name tells us that this method is responsible for HTTP `GET` requests. The first parameter is the URL pattern we need to match to serve this request and execute the delegate provided in the second parameter.
+The code we want to focus on is the `app.MapGet()` method. The method name tells us that this method is responsible for HTTP `GET` requests. The first parameter is the URL pattern which we need to match to serve this request and execute the delegate provided in the second parameter.
 
-For the logic within the delegate we are simply building a simple collection of workouts and returning them. This is fine for a minimal API but what happens if we want to start adding more logic and more endpoints - the `Program` class will soon start filling up and become quite convoluted.
+For the logic within the delegate we are simply building a simple collection of workouts and returning them. This is fine for a minimal API, but what happens if we want to start adding more logic and more endpoints? The `Program` class will soon start filling up and become quite convoluted.
 
 This code completely removes the need to create controllers in your API project, reducing the time to get your endpoints created.
 
@@ -30,7 +30,7 @@ Let's break down what's happening here. We have created a new class called `Work
 
 We have also updated the minimal API delegate by passing through the `IWorkoutRepository` interface. This will resolve to the concrete implementation we registered with the container.
 
-As you can see this has made the code cleaner but even with breaking the logic out into classes, the minimal API controllers have the potential to get out of hand once we start introducing more logic that require more dependencies.
+As you can see this has made the code cleaner, but even with breaking the logic out into classes, the minimal API controllers have the potential to get out of hand once we start introducing more logic that require more dependencies.
 
 ### Mediatr
 
@@ -38,11 +38,11 @@ Mediatr is a popular library that allows you to implement the mediator pattern w
 
 Simply put, the mediator pattern has a mediator class. There will also be a number of mediator request classes that are registered to a mediator handler. When the mediator request is passed to the mediator class, the mediator class knows which request handler to use.
 
-After installing the latest version of the MediatR package we will first need to define our MediatR request. Here we have the `GetWorkoutsRequest`:
+After installing the latest version of the MediatR package, we will first need to define our MediatR request. Here we have the `GetWorkoutsRequest`:
 
 ![Screenshot 3](../images/tinyapi_03.png)
 
-It's very simple defining a request in MediatR, we create the class and then inherit from the IRequest class. The generic type argument we pass through is the response type.
+It's very simple defining a request in MediatR. We create the class and then inherit from the IRequest class. The generic type argument we pass through is the response type.
 
 Next, we will define a handler for this request type. The logic within the handler will be very simple - we will inject our `IWorkoutRepository` and use this to fetch the workouts from the data source and return them. Below is the code for the Mediatr request handler.
 
