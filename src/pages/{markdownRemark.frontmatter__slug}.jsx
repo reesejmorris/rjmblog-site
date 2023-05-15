@@ -9,10 +9,6 @@ const pageStyles = {
 const headingAccentStyles = {
   color: "#0059b3",
 }
-const bodyStyles = {
-  marginBottom: 48,
-  maxWidth: 1200
-}
 
 export default function BlogPostTemplate({
   data, // this prop will be injected by the GraphQL query below.
@@ -20,15 +16,31 @@ export default function BlogPostTemplate({
   const { markdownRemark } = data // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark
   return (
-    <div style={pageStyles}>
+    <div className="bodyStyle">
       <div>
         <h1>{frontmatter.title}</h1>
         <h2 style={headingAccentStyles}>{frontmatter.date}</h2>
         <Link to="/">HOME</Link>
-        <div style={bodyStyles}
+        <div
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>
+
+      <style jsx>{`
+@media (min-width: 100px) {
+  .bodyStyle {
+    margin-bottom: 48;
+    font-family: -apple-system, Roboto, sans-serif, serif;
+  }
+}
+@media (min-width: 800px) {
+  .bodyStyle {
+    margin-bottom: 48;
+    max-width: 1200;
+    font-family: -apple-system, Roboto, sans-serif, serif;
+  }
+}
+`}</style>
     </div>
   )
 }
