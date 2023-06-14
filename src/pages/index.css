@@ -1,0 +1,46 @@
+
+html {
+    background: #525B76;
+    color: #FFFFFF;
+    font-family: -apple-system, Roboto, sans-serif, serif,
+  }
+
+  /* unvisited link */
+a:link {
+    color: #FFFFFF;
+    text-decoration: none;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: #ffffea;
+    text-decoration: none;
+    
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: hotpink;
+  }
+  
+  /* selected link */
+  a:active {
+    color: #ffffea;
+    text-decoration: none;
+  }
+  
+  @media all and (min-width:569px) {
+    html {
+        padding: 50px;
+        background: #525B76;
+        color: #FFFFFF;
+        font-family: -apple-system, Roboto, sans-serif, serif,
+      }      
+  }
+    
+  @media all and (min-width:0px) and (max-width: 568px) {
+    main {
+        padding: 20px;
+        font-family: -apple-system, Roboto, sans-serif, serif,
+      }
+  }
