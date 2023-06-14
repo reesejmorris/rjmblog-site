@@ -1,13 +1,9 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
+import "./index.css"
 
 const pageStyles = {
-  color: "#232129",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingAccentStyles = {
-  color: "#0059b3",
+  fontFamily: "-apple-system, Roboto, sans-serif, serif"
 }
 
 export default function BlogPostTemplate({
@@ -16,32 +12,14 @@ export default function BlogPostTemplate({
   const { markdownRemark } = data // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark
   return (
-    <div className="bodyStyle">
-      <div>
+      <div className={pageStyles}>
         <h1>{frontmatter.title}</h1>
-        <h2 style={headingAccentStyles}>{frontmatter.date}</h2>
+        <h2>{frontmatter.date}</h2>
         <Link to="/">HOME</Link>
         <div
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>
-
-      <style jsx>{`
-@media (min-width: 100px) {
-  .bodyStyle {
-    margin-bottom: 48;
-    font-family: -apple-system, Roboto, sans-serif, serif;
-  }
-}
-@media (min-width: 800px) {
-  .bodyStyle {
-    margin-bottom: 48;
-    max-width: 1200;
-    font-family: -apple-system, Roboto, sans-serif, serif;
-  }
-}
-`}</style>
-    </div>
   )
 }
 
