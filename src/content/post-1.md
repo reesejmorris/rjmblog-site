@@ -1,6 +1,6 @@
 ---
 slug: "tiny-apis"
-date: "2023-03-28"
+date: "2023-04-28"
 title: "Tiny APIs with Mediatr and minimal APIs in .NET 7"
 ---
 
