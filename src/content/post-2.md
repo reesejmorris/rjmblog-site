@@ -1,20 +1,20 @@
 ---
 slug: "xunit-autofixture"
-date: "2023-07-15"
+date: "2023-07-20"
 title: "Level up your XUnit tests with Autofixture"
 ---
 
 ### XUnit and Autofixture
 
-Unit testing is an essential part of any software development but one of the biggest slowdowns is the time it takes to setup the test data. This can be helped by using Autofixture to handle a lot of the test data generation.
+Unit testing is an essential part of any software development, but one of the biggest slowdowns is the time it takes to setup the test data. This can be helped by using Autofixture to handle a lot of the test data generation.
 
-Let’s have a look at an example unit test with manual data setup. Note will be using Moq as our mocking library for these tests, but Autofixture provides integrations with several mocking frameworks.
+Let’s have a look at an example unit test with manual data setup. Note that we will be using Moq as our mocking library for these tests, but Autofixture provides integrations with several mocking frameworks.
 
 ![Screenshot 1](../images/AF_01.png)
 
 We spend a lot of time setting up the data, even when the data may not be necessary for the specific test that we are running. Let’s refactor the test to utilise Autofixture.
 
-First, we need to install the Autofixture Nuget package. Once this has been added, we can initialise a new `Fixture` in our testing class. This fixture will be used to generate our anonymous objects. We can use the `Fixture.Create<T>()` method to generate the object we need. So to generate an random string we can use ` Fixture.Create<string>()`. 
+First we need to install the Autofixture Nuget package. Once this has been added, we can initialise a new `Fixture` in our testing class. This fixture will be used to generate our anonymous objects. We can use the `Fixture.Create<T>()` method to generate the object we need. So to generate a random string we can use ` Fixture.Create<string>()`. 
 
 ![Screenshot 2](../images/AF_02.png)
 
@@ -36,7 +36,7 @@ Now we can use this attribute and pass the generated objects into the test metho
 
 As you can see, we have cleaned up the test above and reduced the noisy creation of objects that do not concern the test. This makes the test easier to read and more maintainable. 
 
-One of the things we might want to do during the data setup is apply certain rule for certain classes. For instance, we may want to only create workouts with a created date in the past as this matches our domain logic. We can do this by creating our own class derived from `ICustomization`. 
+One of the things we might want to do during the data setup is apply a certain rule for certain classes. For instance, we may want to only create workouts with a created date in the past as this matches our domain logic. We can do this by creating our own class derived from `ICustomization`. 
 
 ![Screenshot 6](../images/AF_06.png)
 
