@@ -11,7 +11,7 @@ const IndexPage: React.FC<PageProps> = () => {
         title
       }
     }
-    blog: allMarkdownRemark {
+    blog: allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
       posts: nodes {
         frontmatter {
           date(fromNow: true)
