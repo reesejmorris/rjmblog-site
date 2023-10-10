@@ -42,10 +42,6 @@ const { posts } = data.blog
           <p>{post.excerpt}</p>
         </article>
       ))}
-
-
-      <Link to="/xunit-autofixture">Level up your XUnit tests with Autofixture</Link> <br/>
-      <Link to="/tiny-apis">Minimal APIs + Mediatr in .NET 7</Link>
     </main>
   )
 }
