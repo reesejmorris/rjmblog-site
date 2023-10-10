@@ -31,8 +31,6 @@ const { posts } = data.blog
     <main>
       <h1>
         {data.site.siteMetadata.title} 
-        <br />
-        <span>.NET BLOG</span>
       </h1>
 
       {posts.map(post => (
