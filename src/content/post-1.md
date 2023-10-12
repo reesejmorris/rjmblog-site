@@ -4,8 +4,6 @@ date: "2023-04-28"
 title: "Tiny APIs with Mediatr and minimal APIs in .NET 7"
 ---
 
-### Minimal APIs
-
 Minimal APIs are a great way to build a powerful .NET API fast. They reduce the time taken to get your API up and running which is great for simple APIs or even prototyping a new feature or product.
 
 Let’s have a look at a very simple minimal API. 

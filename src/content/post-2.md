@@ -4,8 +4,6 @@ date: "2023-07-20"
 title: "Level up your XUnit tests with Autofixture"
 ---
 
-### XUnit and Autofixture
-
 Unit testing is an essential part of any software development, but one of the biggest slowdowns is the time it takes to setup the test data. This can be helped by using Autofixture to handle a lot of the test data generation.
 
 Let’s have a look at an example unit test with manual data setup. Note that we will be using Moq as our mocking library for these tests, but Autofixture provides integrations with several mocking frameworks.
