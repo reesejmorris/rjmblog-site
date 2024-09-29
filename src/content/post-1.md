@@ -8,7 +8,30 @@ Minimal APIs are a great way to build a powerful .NET API fast. They reduce the 
 
 Let’s have a look at a very simple minimal API. 
 
-![Screenshot 1](../images/tinyapi_01.png)
+```cs
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+app.MapGet("/workouts", () =>
+{
+    return new List<Workout> 
+    { 
+        new Workout("Hello World", 1) 
+    }; 
+})
+.WithName("GetWorkouts")
+.WithOpenApi();
+app.Run();
+```
 
 The code we want to focus on is the `app.MapGet()` method. The method name tells us that this method is responsible for HTTP `GET` requests. The first parameter is the URL pattern which we need to match to serve this request and execute the delegate provided in the second parameter.
 
@@ -22,7 +45,16 @@ Dependency injection is a common pattern in software development. Abstractions h
 
 We will start by moving some of the logic out into other classes and utilizing dependency injection to inject dependent classes into the minimal API controller.
 
-![Screenshot 2](../images/tinyapi_02.png)
+
+```cs
+builder.Services.AddSingleton<IWorkoutRepository, WorkoutRepository>();
+app.MapGet("/workouts", async (IWorkoutRepository workoutRepository) =>
+{
+    return await workoutRepository.GetWorkoutsAsync();
+})
+.WithName("GetWorkouts")
+.WithOpenApi();
+```
 
 Let's break down what's happening here. We have created a new class called `WorkoutRepository` that inherits from the interface `IWorkoutRepository` and we have registered this with our container as a singleton. 
 
@@ -38,17 +70,41 @@ Simply put, the mediator pattern has a mediator class. There will also be a numb
 
 After installing the latest version of the MediatR package, we will first need to define our MediatR request. Here we have the `GetWorkoutsRequest`:
 
-![Screenshot 3](../images/tinyapi_03.png)
+```cs
+public class GetWorkoutsRequest : IRequest<IEnumerable<Workout>> { }
+```
 
 It's very simple defining a request in MediatR. We create the class and then inherit from the IRequest class. The generic type argument we pass through is the response type.
 
 Next, we will define a handler for this request type. The logic within the handler will be very simple - we will inject our `IWorkoutRepository` and use this to fetch the workouts from the data source and return them. Below is the code for the Mediatr request handler.
 
-![Screenshot 3](../images/tinyapi_04.png)
+```cs
+public class GetWorkoutsRequestHandler : IRequestHandler<GetWorkoutsRequest, IEnumerable<Workout>>
+{
+    private readonly IWorkoutRepository _workoutRepository;
+
+    public GetWorkoutsRequestHandler(IWorkoutRepository workoutRepository)
+    {
+        _workoutRepository = workoutRepository;
+    }
+
+    public async Task<IEnumerable<Workout>> Handle(GetWorkoutsRequest request, CancellationToken cancellationToken)
+    {
+        return await _workoutRepository.GetWorkoutsAsync();
+    }
+}
+```
 
 Here is a simple implementation of Mediatr in our minimal API: 
 
-![Screenshot 5](../images/tinyapi_05.png)
+```cs
+app.MapGet("/workouts", async (IMediator mediator) =>
+{
+    return await mediator.Send(new GetWorkoutsRequest());
+})
+.WithName("GetWorkouts")
+.WithOpenApi();
+```
 
 The only thing we must do to use Mediatr is inject the IMediatr dependency into our delegate. We then pass the `GetWorkoutsRequest` request class to the Mediatr object. Mediatr then works out what handler to use based on the `IRequestHandler` with the `GetWorkoutsRequest` as the generic argument. 
 
