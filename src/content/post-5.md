@@ -4,8 +4,6 @@ date: "2026-02-24"
 title: "I have fired my designer for Codex"
 ---
 
-### Context
-
 Sorry for the clickbait title, but it is true. I was the designer of this blog site and, as a predominantly backend developer, I was terrible at it (evidently).
 
 When I first created this blog site a couple of years ago, I was determined to design everything from scratch, using no templates and minimal helper libraries. However, that approach created a plain-looking site with no character. While it is quick to load and responsive, it does not reflect what I wanted this blog to be.
