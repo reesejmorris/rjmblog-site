@@ -1,49 +1,33 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal TypeScript Starter
-</h1>
+# RJM Blog Site
 
-## 🚀 Quick start
+Gatsby-based blog with optional Google Analytics (GA4) tracking behind explicit cookie consent.
 
-1.  **Create a Gatsby site.**
+## Local development
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+```bash
+npm install
+npm run develop
+```
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
-    ```
+## Analytics setup
 
-2.  **Start developing.**
+Set your GA4 measurement ID as an environment variable before build/deploy:
 
-    Navigate into your new site’s directory and start it up.
+```bash
+GATSBY_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+Behavior:
+- Analytics scripts are loaded only after the visitor accepts analytics cookies.
+- If consent is declined, GA tracking is disabled and GA cookies are removed when possible.
+- Visitors can reopen consent choices via the `Cookie settings` button.
 
-3.  **Open the code and start customizing!**
+## Useful scripts
 
-    Your site is now running at http://localhost:8000!
-
-    Edit `src/pages/index.tsx` to see your site update in real-time!
-
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-## 🚀 Quick start (Netlify)
-
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
-
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+```bash
+npm run develop
+npm run build
+npm run serve
+npm run typecheck
+npm run clean
+```

@@ -3,8 +3,29 @@ import type { HeadFC, PageProps } from "gatsby"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import "./index.css"
 
+type BlogPost = {
+  id: string
+  excerpt: string
+  frontmatter: {
+    date: string
+    title: string
+    slug: string
+  }
+}
+
+type IndexQueryData = {
+  site: {
+    siteMetadata: {
+      title: string
+    }
+  }
+  blog: {
+    posts: BlogPost[]
+  }
+}
+
 const IndexPage: React.FC<PageProps> = () => {
-  const data = useStaticQuery(graphql`
+  const data = useStaticQuery<IndexQueryData>(graphql`
   query {
     site {
       siteMetadata {
@@ -28,16 +49,18 @@ const IndexPage: React.FC<PageProps> = () => {
 const { posts } = data.blog
 
   return (
-    <main>
-      <h1>
+    <main className="content-shell">
+      <h1 className="site-title">
         {data.site.siteMetadata.title} 
       </h1>
 
-      {posts.map(post => (
-        <article key={post.id}>
-          <Link to={post.frontmatter.slug}><h2>{post.frontmatter.title}</h2></Link>
-          <small>{post.frontmatter.date}</small>
-          <p>{post.excerpt}</p>
+      {posts.map((post) => (
+        <article className="post-card" key={post.id}>
+          <Link className="post-title-link" to={post.frontmatter.slug}>
+            <h2 className="post-title">{post.frontmatter.title}</h2>
+          </Link>
+          <small className="post-meta">{post.frontmatter.date}</small>
+          <p className="post-excerpt">{post.excerpt}</p>
         </article>
       ))}
     </main>

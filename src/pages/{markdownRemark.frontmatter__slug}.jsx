@@ -2,24 +2,20 @@ import * as React from "react"
 import { graphql, Link } from "gatsby"
 import "./index.css"
 
-const pageStyles = {
-  fontFamily: "-apple-system, Roboto, sans-serif, serif"
-}
-
 export default function BlogPostTemplate({
   data, // this prop will be injected by the GraphQL query below.
 }) {
   const { markdownRemark } = data // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark
   return (
-      <div className={pageStyles}>
-        <h1>{frontmatter.title}</h1>
-        <h2>{frontmatter.date}</h2>
-        <Link to="/">HOME</Link>
-        <div
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      </div>
+      <main className="content-shell">
+        <h1 className="site-title">{frontmatter.title}</h1>
+        <p className="post-meta">{frontmatter.date}</p>
+        <p className="post-nav">
+          <Link to="/">HOME</Link>
+        </p>
+        <article className="post-content" dangerouslySetInnerHTML={{ __html: html }} />
+      </main>
   )
 }
 
