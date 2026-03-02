@@ -100,8 +100,10 @@ const initGtag = (): void => {
   }
 
   if (!window.gtag) {
-    window.gtag = (...args: unknown[]) => {
-      window.dataLayer?.push(args);
+    // Match Google's recommended queue format exactly: dataLayer.push(arguments)
+    // so gtag.js can process queued commands correctly after script load.
+    window.gtag = function gtag(...args: unknown[]): void {
+      window.dataLayer?.push(arguments);
     };
   }
 
