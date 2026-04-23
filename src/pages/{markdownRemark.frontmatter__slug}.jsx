@@ -1,21 +1,23 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
 import "./index.css"
+import ThemeToggle from "../components/ThemeToggle"
 
-export default function BlogPostTemplate({
-  data, // this prop will be injected by the GraphQL query below.
-}) {
-  const { markdownRemark } = data // data.markdownRemark holds your post data
+export default function BlogPostTemplate({ data }) {
+  const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
   return (
-      <main className="content-shell">
-        <h1 className="site-title">{frontmatter.title}</h1>
-        <p className="post-meta">{frontmatter.date}</p>
+    <main className="content-shell">
+      <div className="post-header">
         <p className="post-nav">
-          <Link to="/">HOME</Link>
+          <Link to="/">← Home</Link>
         </p>
-        <article className="post-content" dangerouslySetInnerHTML={{ __html: html }} />
-      </main>
+        <ThemeToggle />
+      </div>
+      <h1 className="site-title">{frontmatter.title}</h1>
+      <p className="post-meta">{frontmatter.date}</p>
+      <article className="post-content" dangerouslySetInnerHTML={{ __html: html }} />
+    </main>
   )
 }
 

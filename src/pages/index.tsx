@@ -2,6 +2,7 @@ import * as React from "react"
 import type { HeadFC, PageProps } from "gatsby"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import "./index.css"
+import ThemeToggle from "../components/ThemeToggle"
 
 type BlogPost = {
   id: string
@@ -46,13 +47,16 @@ const IndexPage: React.FC<PageProps> = () => {
   }
   `)
 
-const { posts } = data.blog
+  const { posts } = data.blog
 
   return (
     <main className="content-shell">
-      <h1 className="site-title">
-        {data.site.siteMetadata.title} 
-      </h1>
+      <header className="site-header">
+        <h1 className="site-title">
+          {data.site.siteMetadata.title}
+        </h1>
+        <ThemeToggle />
+      </header>
 
       {posts.map((post) => (
         <article className="post-card" key={post.id}>

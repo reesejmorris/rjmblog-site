@@ -1,20 +1,30 @@
 
+/* ===== Dark theme (default) ===== */
 :root {
-  --color-bg: #2d2d2a;
-  --color-body: #ffffff;
-  --color-title: #d3f3ee;
+  --color-bg: #1c1c1a;
+  --color-body: #e0ddd8;
+  --color-title: #daf0e8;
   --color-site-title: #7fb7be;
-  --color-meta: #a4b3b6;
-  --color-link-visited: #ffffea;
+  --color-meta: #8a9ea1;
+  --color-link-visited: #c8c8b0;
   --color-link-hover: #8ed5df;
   --color-link-inline: #cfeef2;
   --color-link-inline-hover: #e4fbff;
   --color-link-inline-visited: #bfe2e8;
   --color-link-title: #d3f3ee;
   --color-link-title-hover: #f0fffd;
-  --color-link-nav: #ffffff;
+  --color-link-nav: #d0d0cc;
   --color-link-nav-hover: #d3f3ee;
   --color-focus-ring: #8ed5df;
+  --color-code-bg: #252523;
+  --color-code-inline-bg: #2e2e2b;
+  --color-border: #3a3a36;
+  --color-toggle-border: #5a6a6c;
+  --color-toggle-text: #8a9ea1;
+
+  --font-body: "Lora", Georgia, "Times New Roman", serif;
+  --font-heading: "Spectral", Georgia, serif;
+
   --layout-max: 1040px;
   --measure-max: 68ch;
   --space-1: 0.35rem;
@@ -27,9 +37,33 @@
   --flow-3: 1.25rem;
   --flow-4: 2rem;
   --flow-5: 2.75rem;
-  --lh-body: 1.68;
-  --lh-heading: 1.25;
+  --lh-body: 1.72;
+  --lh-heading: 1.2;
   --lh-code: 1.5;
+}
+
+/* ===== Light theme ===== */
+[data-theme="light"] {
+  --color-bg: #faf9f6;
+  --color-body: #2a2a28;
+  --color-title: #1a3a3c;
+  --color-site-title: #236570;
+  --color-meta: #546064;
+  --color-link-visited: #5a3a6b;
+  --color-link-hover: #1a5f6a;
+  --color-link-inline: #1f6b78;
+  --color-link-inline-hover: #0d4a55;
+  --color-link-inline-visited: #5a3a6b;
+  --color-link-title: #1a3a3c;
+  --color-link-title-hover: #0d2526;
+  --color-link-nav: #2a2a28;
+  --color-link-nav-hover: #1a5f6a;
+  --color-focus-ring: #2a7a85;
+  --color-code-bg: #f0ede8;
+  --color-code-inline-bg: #e8e4de;
+  --color-border: #d8d5cf;
+  --color-toggle-border: #b0bcbe;
+  --color-toggle-text: #6b7a7d;
 }
 
 html,
@@ -37,8 +71,11 @@ body {
   margin: 0;
   background: var(--color-bg);
   color: var(--color-body);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font-body);
+  transition: background 0.2s ease, color 0.2s ease;
 }
+
+/* ===== Layout ===== */
 
 .content-shell {
   width: 100%;
@@ -48,18 +85,32 @@ body {
   box-sizing: border-box;
 }
 
-.site-title {
-  margin: 0 0 var(--space-4);
-  color: var(--color-site-title);
-  line-height: var(--lh-heading);
+/* ===== Site header ===== */
+
+.site-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  max-width: var(--measure-max);
+  margin: 0 0 var(--space-5);
 }
 
-.site-title,
+.site-title {
+  margin: 0;
+  color: var(--color-site-title);
+  line-height: var(--lh-heading);
+  font-family: var(--font-heading);
+  font-weight: 300;
+}
+
 .post-card,
 .post-nav,
 .post-content {
   max-width: var(--measure-max);
 }
+
+/* ===== Post list ===== */
 
 .post-card {
   margin: 0 0 var(--space-5);
@@ -76,14 +127,17 @@ body {
   margin: 0;
   color: inherit;
   line-height: var(--lh-heading);
+  font-family: var(--font-heading);
+  font-weight: 300;
 }
 
 .post-meta {
   margin: var(--space-2) 0 var(--space-3);
   color: var(--color-meta);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+  font-weight: 400;
+  font-family: var(--font-body);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   line-height: 1.35;
   display: block;
@@ -94,6 +148,8 @@ body {
   line-height: var(--lh-body);
 }
 
+/* ===== Post page nav ===== */
+
 .post-nav {
   margin: 0 0 var(--space-4);
 }
@@ -101,7 +157,23 @@ body {
 .post-nav a {
   color: var(--color-link-nav);
   text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
+
+/* ===== Post header (blog post page) ===== */
+
+.post-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  max-width: var(--measure-max);
+  margin: 0 0 var(--space-4);
+}
+
+/* ===== Post content ===== */
 
 .post-content {
   max-width: var(--measure-max);
@@ -130,6 +202,7 @@ body {
   margin: var(--flow-4) 0 var(--flow-2);
   line-height: var(--lh-heading);
   color: var(--color-title);
+  font-family: var(--font-heading);
 }
 
 .post-content ul,
@@ -144,16 +217,16 @@ body {
 .post-content pre {
   padding: var(--flow-2) var(--flow-3);
   border-radius: 6px;
-  background: #2a2a2a;
+  background: var(--color-code-bg);
   overflow-x: auto;
   line-height: var(--lh-code);
 }
 
 .post-content code {
-  background: #333330;
+  background: var(--color-code-inline-bg);
   border-radius: 4px;
   padding: 0.08em 0.28em;
-  font-size: 0.94em;
+  font-size: 0.9em;
 }
 
 .post-content pre code {
@@ -166,7 +239,7 @@ body {
   color: var(--color-link-inline);
   text-decoration: underline;
   text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.18em;
+  text-underline-offset: 0.2em;
 }
 
 .post-content a:visited {
@@ -179,9 +252,12 @@ body {
   color: var(--color-link-inline-hover);
 }
 
+/* ===== Global headings ===== */
+
 h1,
 h2 {
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-weight: 300;
 }
 
 h1 {
@@ -191,6 +267,8 @@ h1 {
 h2 {
   color: var(--color-title);
 }
+
+/* ===== Global links ===== */
 
 a {
   color: var(--color-link-nav);
@@ -220,7 +298,7 @@ a:active {
   color: var(--color-link-title-hover);
   text-decoration: underline;
   text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.2em;
+  text-underline-offset: 0.22em;
 }
 
 .post-nav a:hover,
@@ -237,14 +315,46 @@ a:focus-visible {
   border-radius: 2px;
 }
 
+/* ===== Theme toggle ===== */
+
+.theme-toggle {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid var(--color-toggle-border);
+  border-radius: 6px;
+  color: var(--color-toggle-text);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.65rem;
+  line-height: 1.4;
+  transition: border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-site-title);
+  color: var(--color-site-title);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 3px;
+}
+
+/* ===== Responsive ===== */
+
 @media all and (max-width: 568px) {
   :root {
     --flow-3: 1.1rem;
     --flow-4: 1.65rem;
     --flow-5: 2.25rem;
-    --lh-body: 1.62;
+    --lh-body: 1.65;
   }
 }
+
+/* ===== Cookie banner ===== */
 
 .cookie-banner {
   position: fixed;
@@ -253,23 +363,24 @@ a:focus-visible {
   max-width: min(30rem, calc(100vw - 2rem));
   padding: 1rem 1.1rem;
   border-radius: 10px;
-  border: 1px solid #4e5d5e;
-  background: #1f2322;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--color-border);
+  background: var(--color-code-bg);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
   z-index: 1000;
 }
 
 .cookie-banner-title {
   margin: 0 0 0.45rem;
   color: var(--color-title);
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-weight: 400;
 }
 
 .cookie-banner-copy {
   margin: 0 0 0.7rem;
   color: var(--color-body);
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .cookie-banner-warning {
@@ -279,6 +390,11 @@ a:focus-visible {
   background: #3f2f18;
   color: #ffdca8;
   font-size: 0.9rem;
+}
+
+[data-theme="light"] .cookie-banner-warning {
+  background: #fff3e0;
+  color: #7a4f00;
 }
 
 .cookie-banner-actions {
@@ -292,19 +408,20 @@ a:focus-visible {
   border-radius: 6px;
   padding: 0.5rem 0.85rem;
   font-size: 0.9rem;
+  font-family: var(--font-body);
   cursor: pointer;
 }
 
 .cookie-button-secondary {
   background: transparent;
-  border-color: #8ba2a6;
-  color: #d6e4e6;
+  border-color: var(--color-toggle-border);
+  color: var(--color-body);
 }
 
 .cookie-button-primary {
   background: var(--color-site-title);
-  color: #112728;
-  font-weight: 700;
+  color: var(--color-bg);
+  font-weight: 600;
 }
 
 .cookie-settings-button {
@@ -312,11 +429,12 @@ a:focus-visible {
   right: 1rem;
   bottom: 1rem;
   z-index: 950;
-  border: 1px solid #8ba2a6;
+  border: 1px solid var(--color-toggle-border);
   border-radius: 999px;
   padding: 0.45rem 0.8rem;
-  background: #1f2322;
-  color: #d6e4e6;
+  background: var(--color-code-bg);
+  color: var(--color-body);
+  font-family: var(--font-body);
   cursor: pointer;
 }
 
