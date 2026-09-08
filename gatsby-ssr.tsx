@@ -17,11 +17,6 @@ export const onRenderBody: GatsbySSR["onRenderBody"] = ({ setHeadComponents, set
     />,
   ]);
   setPreBodyComponents([
-    <script
-      key="theme-init"
-      dangerouslySetInnerHTML={{
-        __html: `(function(){try{var s=localStorage.getItem('theme');var p=s||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',p);}catch(e){}})();`,
-      }}
-    />,
+    <script key="theme-init" src="/theme-init.js" />,
   ]);
 };
