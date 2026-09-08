@@ -37,7 +37,7 @@ const config: GatsbyConfig = {
       plugins: [
         // Post bodies use dangerouslySetInnerHTML. Preserve Markdown, but
         // render any embedded HTML as inert text to prevent stored XSS.
-        require.resolve("./src/plugins/strip-raw-html"),
+        { resolve: "./src/plugins/strip-raw-html" },
         {
           resolve: `gatsby-remark-images`,
           options: {
